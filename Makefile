@@ -10,7 +10,7 @@
 # This should be the path to a valid Kerbal Space Program installation.
 # Defining KSPDIR in the environment will override this.
 ifndef KSPDIR
-	KSPDIR=/Users/peter/KerbalSpaceProgram
+	KSPDIR=/home/stephen/.steam/steam/steamapps/common/KSP
 endif
 
 # KSPLIBDIR
@@ -18,16 +18,16 @@ endif
 # the environment will overwrite this.
 ifndef KSPLIBDIR
 	# This default works for macOS
-	KSPLIBDIR=$(KSPDIR)/KSP.app/Contents/Resources/Data/Managed
+	#KSPLIBDIR=$(KSPDIR)/KSP.app/Contents/Resources/Data/Managed
 	# On Linux, comment out the above line and try this
-	# KSPLIBDIR=$(KSPDIR)/KSP_Data/Managed
+	KSPLIBDIR=$(KSPDIR)/KSP_Data/Managed
 endif
 
 # Things less likely to need configuring:
 
 # INSTALLDIR
 # Where to install the plugin
-INSTALLDIR=$(KSPDIR)/GameData/KerbalSimpit
+INSTALLDIR=/mnt/Downloads/KSP/KerbalSimpit
 # CONFIGDIR
 # Where the plugin's configuration files are stored
 CONFIGDIR=$(INSTALLDIR)/PluginData/KerbalSimpit
