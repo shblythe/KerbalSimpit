@@ -27,7 +27,7 @@ endif
 
 # INSTALLDIR
 # Where to install the plugin
-INSTALLDIR=/mnt/Downloads/KSP/KerbalSimpit
+INSTALLDIR=/mnt/data/Steam/steamapps/common/KSP/GameData/KerbalSimpit
 # CONFIGDIR
 # Where the plugin's configuration files are stored
 CONFIGDIR=$(INSTALLDIR)/PluginData/KerbalSimpit
