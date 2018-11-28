@@ -11,4 +11,4 @@ KSPresources
 
 # Ignore WIP bits
 junk/
-
+.*.swp
