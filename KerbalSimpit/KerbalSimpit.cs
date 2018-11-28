@@ -13,7 +13,7 @@ namespace KerbalSimpit
 {
     public delegate void ToDeviceCallback();
 
-    [KSPAddon(KSPAddon.Startup.Instantly, true)]
+    [KSPAddon(KSPAddon.Startup.Flight, false)]
     public class KSPit : MonoBehaviour
     {
         // To receive events from serial devices on channel i,
@@ -43,8 +43,6 @@ namespace KerbalSimpit
     
         public void Start()
         {
-            DontDestroyOnLoad(this);
-
             for (int i=254; i>=0; i--)
             {
                 onSerialReceivedArray[i] = new EventData<byte, object>(String.Format("onSerialReceived{0}", i));
