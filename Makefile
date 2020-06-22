@@ -10,7 +10,7 @@
 # This should be the path to a valid Kerbal Space Program installation.
 # Defining KSPDIR in the environment will override this.
 ifndef KSPDIR
-	KSPDIR=/home/stephen/.steam/steam/steamapps/common/KSP
+	KSPDIR=/mnt/e/SteamLibrary/steamapps/common/KSP
 endif
 
 # KSPLIBDIR
@@ -20,7 +20,7 @@ ifndef KSPLIBDIR
 	# This default works for macOS
 	#KSPLIBDIR=$(KSPDIR)/KSP.app/Contents/Resources/Data/Managed
 	# On Linux, comment out the above line and try this
-	KSPLIBDIR=$(KSPDIR)/KSP_Data/Managed
+	KSPLIBDIR=$(KSPDIR)/KSP_x64_Data/Managed
 endif
 
 # Things less likely to need configuring:
