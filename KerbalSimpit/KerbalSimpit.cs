@@ -58,6 +58,8 @@ namespace KerbalSimpit
             onSerialReceivedArray[CommonPackets.Synchronisation].Add(handshakeCallback);
             onSerialReceivedArray[InboundPackets.RegisterHandler].Add(registerCallback);
             onSerialReceivedArray[InboundPackets.DeregisterHandler].Add(deregisterCallback);
+            onSerialReceivedArray[InboundPackets.Watchdog].Add(incomingWatchdog);
+            incomingWatchdog(0xFF,0);  // Initialise watchdog
 
             EventDispatchThread = new Thread(EventWorker);
             EventDispatchThread.Start();
@@ -230,6 +232,35 @@ namespace KerbalSimpit
             {
                 idx = payload[i];
                 toSerialArray[idx].Remove(SerialPorts[portID].sendPacket);
+            }
+        }
+
+        private static void deregisterAll(byte portID)
+        {
+            for (int i=254; i>=0; i--)
+            {
+                toSerialArray[i].Remove(SerialPorts[portID].sendPacket);
+            }
+        }
+
+        private const int watchdogLimitS=8;
+        // TODO:
+        // This implementation of watchdog isn't quite right yet, we deal with watchdogs as
+        // though we have one per portID, but actually, we only have on watchdog store.
+        // Perhaps this should be an array.
+        // It'll work fine as long as we only have one client though!
+        static private DateTime watchdog;
+        private void incomingWatchdog(byte portID, object data)
+        {
+            watchdog=DateTime.UtcNow;
+        }
+
+        public static void checkWatchdog(byte portID)
+        {
+            if ((DateTime.UtcNow-watchdog).TotalSeconds>watchdogLimitS)
+            {
+                Debug.Log("KerbalSimpit: checkWatchdog calling deregisterAll()");
+                deregisterAll(portID);
             }
         }
     }

@@ -138,6 +138,7 @@ namespace KerbalSimpit.Serial
         // game thread, hence using a threadsafe queue implementation.
         public void sendPacket(byte Type, object Data)
         {
+            KSPit.checkWatchdog(ID);
             // Note that header sizes are hardcoded here:
             // packet[0] = first byte of header
             // packet[1] = second byte of header
